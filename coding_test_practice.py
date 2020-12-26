@@ -1,15 +1,27 @@
-def solution(numbers):
-    answer = []
-    for i in numbers:
-        if numbers.count(i) > 1:
-            answer.append(i+i)
-    for num1 in numbers:
-        for num2 in numbers:
-            if num1 != num2:
-                answer.append(num1+num2)
-    answer = list(set(answer))
+##크레인 인형뽑기 게임
+def solution(board, moves):
+    answer = 0
+    box = []
+    for moves in moves:
+        for level in range(len(board)):
+            if board[level][moves-1] != 0:
+                box.append(board[level][moves-1])
+                board[level][moves-1] = 0
+                if len(box) > 1:
+                    if (box[-1] == box[-2]):
+                        box.pop()
+                        box.pop()
+                        answer += 2
+                break
     return answer
 
-numbers = [2,1,3,4,1]
+board =[[0,0,0,0,0],
+        [0,0,1,0,3],
+        [0,2,5,0,1],
+        [4,2,4,4,2],
+        [3,5,1,3,1]]
 
-print(solution(numbers))
+moves = [1,5,3,5,1,2,1,4]
+answer = solution(board, moves)
+print(answer)
+

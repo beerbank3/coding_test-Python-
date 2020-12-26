@@ -1,3 +1,4 @@
+#모의고사
 from itertools import cycle
 def solution(answers):
     win = []
